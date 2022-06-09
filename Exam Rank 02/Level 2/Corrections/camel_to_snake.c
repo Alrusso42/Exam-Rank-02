@@ -1,24 +1,25 @@
 #include <unistd.h>
 
-void	camel_to_snake(char *str)
+int	main(int argc, char **argv)
 {
-	while (*str != '\0')
-	{
-		if (*str >= 'A' && *str <= 'Z')
-		{
-			write(1, "_", 1);
-			*str = *str + ('a' - 'A');
-		}
-		write(1, str, 1);
-		++str;
-	}
-}
+	int i;
 
-int		main(int argc, char **argv)
-{
+	i = 0;
 	if (argc == 2)
-		camel_to_snake(argv[1]);
-
+	{
+		if(argv[1][0] >= 'A' && argv[1][0] <= 'Z')
+				argv[1][0] += 32;
+		while(argv[1][i])
+		{
+			if(argv[1][i] >= 'A' && argv[1][i] <= 'Z')
+			{
+				write(1, "_", 1);
+				argv[1][i] += 32;
+			}
+			write(1, &argv[1][i], 1);
+			i++;		
+		}
+	}
 	write(1, "\n", 1);
-	return (0);
+	return(0);
 }

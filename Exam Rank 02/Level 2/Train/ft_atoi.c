@@ -1,28 +1,28 @@
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
-	int	neg;
-	int result;
+	int	signe;
+	int	resultat;
 
 	i = 0;
-	result = 0;
-	neg = 1;
-	while(((str[i] >= 9 && str[i] <= 13) || str[i] == 32) && str[i])
+	resultat = 0;
+	signe = 1;
+	while(((str[i] >= 9 && str[i] <= 13) || str[i] == 32) && str[i] != '\0')
 		i++;
 	if(str[i] == '-')
 	{
-		neg = -1;
+		signe *= -1;
 		i++;
 	}
 	else if(str[i] == '+')
 		i++;
-	while(str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
+	while ((str[i] >= '0' && str[i] <= '9') && str[i])
 	{
-		result *= 10;
-		result += str[i] - '0';
+		resultat *= 10;
+		resultat += str[i] - '0';
 		i++;
 	}
-	return(result * neg);
+	return(resultat * signe);
 }
 
 #include <stdio.h>
